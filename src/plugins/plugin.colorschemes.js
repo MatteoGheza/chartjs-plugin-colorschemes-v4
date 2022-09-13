@@ -1,6 +1,7 @@
 'use strict';
 
 import {Chart} from 'chart.js';
+import {color} from 'chart.js/helpers';
 
 // Element models are always reset when hovering in Chart.js 2.7.2 or earlier
 var hoverReset = false; //todo: is necessary on v3?
@@ -48,7 +49,6 @@ var ColorSchemesPlugin = {
 	id: 'colorschemes',
 
 	beforeUpdate: function(chart, args, options) {
-    var helpers = Chart.helpers;
 		// Please note that in v3, the args argument was added. It was not used before it was added,
 		// so we just check if it is not actually our options object
 		if (options === undefined) {
@@ -60,7 +60,7 @@ var ColorSchemesPlugin = {
 		var reverse = options.reverse;
 		var override = options.overrideExisting;
 		var custom = options.custom;
-		var schemeClone, customResult, length, colorIndex, color;
+		var schemeClone, customResult, length, colorIndex, newColor;
 
 		if (scheme) {
 
@@ -84,7 +84,7 @@ var ColorSchemesPlugin = {
 			// Set scheme colors
 			chart.config.data.datasets.forEach(function(dataset, datasetIndex) {
 				colorIndex = datasetIndex % length;
-				color = scheme[reverse ? length - colorIndex - 1 : colorIndex];
+				newColor = scheme[reverse ? length - colorIndex - 1 : colorIndex];
 
 				// Object to store which color option is set
 				dataset[EXPANDO_KEY] = {};
@@ -96,19 +96,19 @@ var ColorSchemesPlugin = {
 				case 'scatter':
 					if (typeof dataset.backgroundColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].backgroundColor = dataset.backgroundColor;
-						dataset.backgroundColor = helpers.color(color).alpha(fillAlpha).rgbString();
+						dataset.backgroundColor = color(newColor).alpha(fillAlpha).rgbString();
 					}
 					if (typeof dataset.borderColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].borderColor = dataset.borderColor;
-						dataset.borderColor = color;
+						dataset.borderColor = newColor;
 					}
 					if (typeof dataset.pointBackgroundColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].pointBackgroundColor = dataset.pointBackgroundColor;
-						dataset.pointBackgroundColor = helpers.color(color).alpha(fillAlpha).rgbString();
+						dataset.pointBackgroundColor = color(newColor).alpha(fillAlpha).rgbString();
 					}
 					if (typeof dataset.pointBorderColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].pointBorderColor = dataset.pointBorderColor;
-						dataset.pointBorderColor = color;
+						dataset.pointBorderColor = newColor;
 					}
 					break;
 				// For doughnut and pie chart, backgroundColor is set to an array of colors
@@ -127,18 +127,18 @@ var ColorSchemesPlugin = {
 				case 'bar':
 					if (typeof dataset.backgroundColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].backgroundColor = dataset.backgroundColor;
-						dataset.backgroundColor = helpers.color(color).alpha(fillAlpha).rgbString();
+						dataset.backgroundColor = color(newColor).alpha(fillAlpha).rgbString();
 					}
 					if (typeof dataset.borderColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].borderColor = dataset.borderColor;
-						dataset.borderColor = color;
+						dataset.borderColor = newColor;
 					}
 					break;
 				// For the other chart, only backgroundColor is set
 				default:
 					if (typeof dataset.backgroundColor === 'undefined' || override) {
 						dataset[EXPANDO_KEY].backgroundColor = dataset.backgroundColor;
-						dataset.backgroundColor = color;
+						dataset.backgroundColor = newColor;
 					}
 					break;
 				}
