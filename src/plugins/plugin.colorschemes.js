@@ -1,6 +1,6 @@
 'use strict';
 
-import Chart from 'chart.js';
+import {Chart} from 'chart.js';
 
 var helpers = Chart.helpers;
 
@@ -181,7 +181,12 @@ var ColorSchemesPlugin = {
 	}
 };
 
-const registerPlugin = Chart.register || Chart.plugins.register;
-registerPlugin(ColorSchemesPlugin);
+if (Chart.registry) {
+  // Chartjs 3
+  Chart.register(ColorSchemesPlugin);
+} else {
+  // Chartjs 2
+  Chart.plugins.register(ColorSchemesPlugin);
+}
 
 export default ColorSchemesPlugin;
