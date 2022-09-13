@@ -5,7 +5,7 @@ import {Chart} from 'chart.js';
 var helpers = Chart.helpers;
 
 // Element models are always reset when hovering in Chart.js 2.7.2 or earlier
-var hoverReset = Chart.DatasetController.prototype.removeHoverStyle.length === 2;
+var hoverReset = false; //todo: is necessary on v3?
 
 var EXPANDO_KEY = '$colorschemes';
 
