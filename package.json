@@ -35,7 +35,7 @@
     "test": "test"
   },
   "devDependencies": {
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.0.0",
     "eslint-config-chartjs": "^0.3.0",
     "eslint-plugin-es": "^1.4.0",
     "eslint-plugin-html": "^5.0.3",
