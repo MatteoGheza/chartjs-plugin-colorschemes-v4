@@ -1,19 +1,19 @@
 {
-  "name": "chartjs-plugin-colorschemes-v3",
+  "name": "chartjs-plugin-colorschemes-v4",
   "homepage": "https://nagix.github.io/chartjs-plugin-colorschemes",
   "description": "Predefined color schemes for Chart.js",
   "author": "Akihiko Kusanagi <nagi@nagi-p.com> (https://nagix.github.io/)",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "license": "MIT",
-  "jsdelivr": "dist/chartjs-plugin-colorschemes-v3.min.js",
-  "unpkg": "dist/chartjs-plugin-colorschemes-v3.min.js",
-  "main": "dist/chartjs-plugin-colorschemes-v3.js",
+  "jsdelivr": "dist/chartjs-plugin-colorschemes-v4.min.js",
+  "unpkg": "dist/chartjs-plugin-colorschemes-v4.min.js",
+  "main": "dist/chartjs-plugin-colorschemes-v4.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/m08pvv/chartjs-plugin-colorschemes.git"
+    "url": "https://github.com/matteogheza/chartjs-plugin-colorschemes-v4.git"
   },
   "bugs": {
-    "url": "https://github.com/m08pvv/chartjs-plugin-colorschemes/issues"
+    "url": "https://github.com/matteogheza/chartjs-plugin-colorschemes-v4/issues"
   },
   "keywords": [
     "chart.js",
@@ -63,6 +63,6 @@
     "yargs": "^13.2.2"
   },
   "peerDependencies": {
-    "chart.js": ">= 3 < 4"
+    "chart.js": ">= 2 < 5"
   }
 }
